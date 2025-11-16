@@ -1,0 +1,123 @@
+{
+  "bookmarks": [
+    {
+      "id": "bm-001",
+      "title": "Github",
+      "url": "https://github.com",
+      "favicon": "/images/github.svg",
+      "description": "GitHub is a proprietary developer platform that allows developers to create, store, manage, and share their code.",
+      "tags": [
+        "Tools",
+        "Community",
+        "Git"
+      ],
+      "pinned": false,
+      "isArchived": false,
+      "visitCount": 32,
+      "createdAt": "2025-01",
+      "lastVisited": "2025-11"
+    },
+    {
+      "id": "bm-002",
+      "title": "Frontend Mentor",
+      "url": "https://www.frontendmentor.io",
+      "favicon": "/images/frontendmentor.svg",
+      "description": "Frontend Mentor provides professional design-to-code challenges that mirror real-world development work. Join 1,107,766 developers building portfolio projects that impress employers.",
+      "tags": [
+        "Practice",
+        "Learning",
+        "Community"
+      ],
+      "pinned": false,
+      "isArchived": false,
+      "visitCount": 35,
+      "createdAt": "2025-01",
+      "lastVisited": "2025-11"
+    },
+    {
+      "id": "bm-003",
+      "title": "React Docs",
+      "url": "https://react.dev",
+      "favicon": "/images/react-logo.svg",
+      "description": "React is a free and open-source front-end JavaScript library that aims to make building user interfaces based on components more 'seamless'. ",
+      "tags": [
+        "JavaScript",
+        "Framework",
+        "Reference"
+      ],
+      "pinned": false,
+      "isArchived": false,
+      "visitCount": 78,
+      "createdAt": "2025-01",
+      "lastVisited": "2025-11"
+    },
+    {
+      "id": "bm-004",
+      "title": "Tailwind CSS",
+      "url": "https://tailwindcss.com",
+      "favicon": "/images/tailwind-css.svg",
+      "description": "A utility-first CSS framework packed with classes like flex, pt-4, text-center and rotate-90 that can be composed to build any design, directly in your markup.",
+      "tags": [
+        "CSS",
+        "Framework",
+        "Tools"
+      ],
+      "pinned": false,
+      "isArchived": false,
+      "visitCount": 51,
+      "createdAt": "2025-01",
+      "lastVisited": "2025-11"
+    },
+    {
+      "id": "bm-005",
+      "title": "Web.dev",
+      "url": "https://web.dev",
+      "favicon": "/images/Webdev.svg",
+      "description": "We want to help you build beautiful, accessible, fast, and secure websites that work cross-browser, and for all of your users. ",
+      "tags": [
+        "Performance",
+        "Learning",
+        "Tips"
+      ],
+      "pinned": false,
+      "isArchived": false,
+      "visitCount": 71,
+      "createdAt": "2025-01",
+      "lastVisited": "2025-11"
+    },
+    {
+      "id": "bm-006",
+      "title": "Dev.to",
+      "url": "https://dev.to",
+      "favicon": "/images/dev-to.svg",
+      "description": "A space to discuss and keep up software development and manage your software career.",
+      "tags": [
+        "Community",
+        "Learning",
+        "Practice"
+      ],
+      "pinned": false,
+      "isArchived": false,
+      "visitCount": 23,
+      "createdAt": "2025-01",
+      "lastVisited": "2025-11"
+    },
+    {
+      "id": "bm-007",
+      "title": "freeCodeCamp",
+      "url": "https://www.freecodecamp.org",
+      "favicon": "/images/free-code.svg",
+      "description": "freeCodeCamp is a non-profit educational organization that consists of an interactive learning web platform, an online community forum, ",
+      "tags": [
+        "Learning",
+        "Community",
+        "Tutorial"
+      ],
+      "pinned": false,
+      "isArchived": false,
+      "visitCount": 32,
+      "createdAt": "2025-01",
+      "lastVisited": "2025-11"
+    }
+  ]
+}

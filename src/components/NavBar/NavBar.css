@@ -1,0 +1,78 @@
+.navbar {
+  height: 60px;
+  border-bottom: 1px solid #e3e3e3;
+}
+
+.navbar-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+  padding: 0px 30px;
+}
+
+.navbar-wrapper .navbar-search {
+  display: flex;
+  align-items: center;
+  padding-left: 8px;
+  border-radius: 8px;
+  width: 30%;
+  border: 1px solid #e3e3e3;
+}
+
+.navbar-wrapper .navbar-search input {
+  padding: 8px;
+  border-radius: 8px;
+  border: none;
+  outline: none;
+  width: 100%;
+}
+
+.navbar-wrapper .navbar-search .search-icon {
+  color: #777;
+}
+
+.navbar-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.navbar-left .mode {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.navbar-left button {
+  background-color: rgb(2, 91, 91);
+  color: white;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.navbar-left button:hover {
+  background-color: rgb(1, 135, 135);
+}
+
+.navbar-left .profile {
+  height: 30px;
+  width: 30px;
+  background-color: aqua;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.navbar-left .profile img {
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+  object-fit: cover;
+}

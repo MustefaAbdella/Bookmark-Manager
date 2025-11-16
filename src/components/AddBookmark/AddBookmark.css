@@ -1,0 +1,69 @@
+.modal-overlay {
+  background-color: rgba(0, 0, 0, 0.4);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.add-bookmark {
+  background-color: white;
+  min-width: 300px;
+  padding: 15px;
+  border-radius: 10px;
+}
+
+.add-bookmark h2 {
+  font-size: 16px;
+  color: rgb(2, 91, 91);
+  padding-top: 10px;
+}
+
+.bookmark-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+
+.bookmark-form input,
+textarea {
+  padding: 8px;
+  border-radius: 10px;
+  outline: none;
+  border: 1px solid #ccc;
+}
+
+.bookmark-form input:focus,
+textarea:focus {
+  border-color: #0e7a59;
+}
+
+.form-controls {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 12px;
+}
+
+.cancel-btn {
+  font-size: 14px;
+  font-weight: 600;
+  color: rgb(2, 91, 91);
+  cursor: pointer;
+}
+
+.save-btn {
+  background-color: #ddd;
+  color: rgb(2, 91, 91);
+  font-weight: 600;
+  padding: 8px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
