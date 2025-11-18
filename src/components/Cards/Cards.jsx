@@ -1,7 +1,13 @@
 import React from 'react'
 import './Cards.css'
 import { Icon } from '@iconify/react'
+import { useContextAPI } from '../ContextAPI'
 const Cards = ({ ...bookmark }) => {
+
+  const { trackVisitCount } = useContextAPI();
+  const handleVisitCount = () => {
+    trackVisitCount(bookmark.id);
+  }
   return (
     <div className='card-container'>
       <div className="card-detail">
@@ -10,7 +16,7 @@ const Cards = ({ ...bookmark }) => {
             <div className='bookmark-icon'><img src={bookmark.favicon} alt="" /></div>
             <div className='title-and-link'>
               <h2>{bookmark.title}</h2>
-              <a href={bookmark.url} target='_blank' rel="noopener">{bookmark.url}</a>
+              <a onClick={handleVisitCount} href={bookmark.url} target='_blank' rel="noopener">{bookmark.url}</a>
             </div>
           </div>
           <div className='toggle-menu'>
@@ -23,7 +29,7 @@ const Cards = ({ ...bookmark }) => {
           </div>
           <div className="bookmark-tags">
             {bookmark.tags.map((tag) =>
-              <span className='tags-list' key={crypto.randomUUID()}>{tag}</span>
+              <span className='tags-list' key={crypto.randomUUID()}>{tag.charAt(0).toUpperCase() + tag.slice(1)}</span>
             )}
           </div>
         </div>

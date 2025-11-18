@@ -9,7 +9,7 @@ export const ContextProvider = ({ children }) => {
   const [bookmarks, setBookmarks] = useState(initialBookmarks);
   const [showAddBookmark, setShowAddBookmark] = useState(false)
   const [selectedTags, setSelectedTags] = useState([]);
-  // const [filteredBookmark, setFilteredBookmark] = useState(initialBookmarks);
+  // const [visitCount, setVisitCount] = useState(0);
 
   const addBookmark = (newBookmark) => {
     const bookmark = {
@@ -43,38 +43,51 @@ export const ContextProvider = ({ children }) => {
 
     // filter based on tag
     if (selectedTags && selectedTags.length > 0) {
-      result = bookmarks.filter((bookmark) =>
+      result = result.filter((bookmark) =>
         bookmark.tags &&
         bookmark.tags.some(tag => selectedTags.includes(tag))
       );
-
-      // search using title of the bookmark
-      if (query) {
-        result = result
-          .filter((bookmark) => bookmark.title.toLowerCase().includes(query));
-      }
-      return result;
     }
-
-    const filteredBookmarks = getSelectedBookmarks();
-
-    const value = {
-      query,
-      bookmarks,
-      showAddBookmark,
-      selectedTags,
-      setQuery,
-      setBookmarks,
-      setShowAddBookmark,
-      addBookmark,
-      setSelectedTags,
-      handleChechboxChange,
-      filteredBookmarks
+    // search using title of the bookmark
+    if (query) {
+      result = result
+        .filter((bookmark) => bookmark.title.toLowerCase().includes(query));
     };
-
-    return <ContextAPI.Provider value={value}>
-      {children}
-    </ContextAPI.Provider>
+    return result;
   }
+
+  const filteredBookmarks = getSelectedBookmarks();
+
+
+  // visit count
+  const trackVisitCount = (bookmarkId) => {
+    setBookmarks(prevBookmarks =>
+      prevBookmarks.map(bookmark =>
+        bookmark.id === bookmarkId
+          ? { ...bookmark, visitCount: (bookmark.visitCount || 0) + 1 }
+          : bookmark
+      )
+    );
+  }
+
+  const value = {
+    query,
+    bookmarks,
+    showAddBookmark,
+    selectedTags,
+    filteredBookmarks,
+    setQuery,
+    setBookmarks,
+    setShowAddBookmark,
+    addBookmark,
+    setSelectedTags,
+    handleChechboxChange,
+    trackVisitCount
+  };
+
+  return <ContextAPI.Provider value={value}>
+    {children}
+  </ContextAPI.Provider>
+
 }
 export const useContextAPI = () => useContext(ContextAPI);

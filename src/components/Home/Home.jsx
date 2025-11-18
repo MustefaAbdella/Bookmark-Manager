@@ -10,8 +10,6 @@ const Home = () => {
 
   const { showAddBookmark, filteredBookmarks } = useContextAPI();
 
-  // const searchedBookmark = bookmarks
-  //   .filter((bookmark) => bookmark.title.toLowerCase().includes(query));
   return (
     <div className='main-content'>
       <NavBar />
@@ -23,7 +21,7 @@ const Home = () => {
           </div>
         </div>
         <div className="bookmark-cards">
-          {(filteredBookmarks).map((bookmark) => (
+          {filteredBookmarks.map((bookmark) => (
             <Cards key={bookmark.id} {...bookmark} />
           ))}
         </div>

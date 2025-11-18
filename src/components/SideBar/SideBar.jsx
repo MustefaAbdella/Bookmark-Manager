@@ -43,7 +43,7 @@ const SideBar = () => {
                     checked={selectedTags.includes(tag)}
                     onChange={handleChechboxChange}
                   />
-                  <p>{tag}</p>
+                  <p>{tag.charAt(0).toUpperCase() + tag.slice(1)}</p>
                 </span>
                 <span className='tags-count'>{count}</span>
               </div>
