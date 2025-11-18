@@ -48,11 +48,19 @@
 .archive {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   gap: 8px;
   color: #444;
   padding: 6px 8px;
   border-radius: 4px;
   cursor: pointer;
+}
+
+.home .home-icon,
+.archive .archive-icon {
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
 .home-archive .home {
@@ -63,6 +71,18 @@
 .home-archive .home .home-icon,
 .archive-icon {
   color: #888;
+}
+
+.home .count,
+.archive .count {
+  background-color: rgb(227, 235, 235);
+  font-size: 11px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .tags-category {
@@ -105,9 +125,9 @@
 
 .tags-category .tags-list .individual-tags .tags-count {
   background-color: rgb(227, 235, 235);
-  font-size: 9px;
-  width: 14px;
-  height: 14px;
+  font-size: 11px;
+  width: 16px;
+  height: 16px;
   border-radius: 50%;
   display: flex;
   justify-content: center;

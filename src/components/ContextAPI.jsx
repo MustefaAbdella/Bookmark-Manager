@@ -8,6 +8,8 @@ export const ContextProvider = ({ children }) => {
   const [query, setQuery] = useState('');
   const [bookmarks, setBookmarks] = useState(initialBookmarks);
   const [showAddBookmark, setShowAddBookmark] = useState(false)
+  const [selectedTags, setSelectedTags] = useState([]);
+  // const [filteredBookmark, setFilteredBookmark] = useState(initialBookmarks);
 
   const addBookmark = (newBookmark) => {
     const bookmark = {
@@ -25,20 +27,54 @@ export const ContextProvider = ({ children }) => {
     setShowAddBookmark(false);
   }
 
+  const handleChechboxChange = (e) => {
+    const { value, checked } = e.target;
 
-  const value = {
-    query,
-    bookmarks,
-    showAddBookmark,
-    setQuery,
-    setBookmarks,
-    setShowAddBookmark,
-    addBookmark
+    if (checked) {
+      setSelectedTags(prevTags => [...prevTags, value]);
+    } else {
+      setSelectedTags(prevTags => prevTags.filter(tag => tag !== value));
+    }
   };
 
-  return <ContextAPI.Provider value={value}>
-    {children}
-  </ContextAPI.Provider>
-}
+  const getSelectedBookmarks = () => {
 
+    let result = bookmarks;
+
+    // filter based on tag
+    if (selectedTags && selectedTags.length > 0) {
+      result = bookmarks.filter((bookmark) =>
+        bookmark.tags &&
+        bookmark.tags.some(tag => selectedTags.includes(tag))
+      );
+
+      // search using title of the bookmark
+      if (query) {
+        result = result
+          .filter((bookmark) => bookmark.title.toLowerCase().includes(query));
+      }
+      return result;
+    }
+
+    const filteredBookmarks = getSelectedBookmarks();
+
+    const value = {
+      query,
+      bookmarks,
+      showAddBookmark,
+      selectedTags,
+      setQuery,
+      setBookmarks,
+      setShowAddBookmark,
+      addBookmark,
+      setSelectedTags,
+      handleChechboxChange,
+      filteredBookmarks
+    };
+
+    return <ContextAPI.Provider value={value}>
+      {children}
+    </ContextAPI.Provider>
+  }
+}
 export const useContextAPI = () => useContext(ContextAPI);

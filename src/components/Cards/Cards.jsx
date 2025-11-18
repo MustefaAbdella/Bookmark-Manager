@@ -22,9 +22,9 @@ const Cards = ({ ...bookmark }) => {
             <p>{bookmark.description}</p>
           </div>
           <div className="bookmark-tags">
-            <span>{bookmark.tags[0]}</span>
-            <span>{bookmark.tags[1]}</span>
-            <span>{bookmark.tags[2]}</span>
+            {bookmark.tags.map((tag) =>
+              <span className='tags-list' key={crypto.randomUUID()}>{tag}</span>
+            )}
           </div>
         </div>
       </div>

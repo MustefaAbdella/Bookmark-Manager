@@ -89,7 +89,9 @@
   gap: 10px;
 }
 
-.card-content .bookmark-tags span {
+
+
+.card-content .bookmark-tags .tags-list {
   font-size: 12px;
   background-color: rgba(227, 235, 235);
   color: #555;

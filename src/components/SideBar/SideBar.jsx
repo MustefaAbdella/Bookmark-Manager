@@ -5,7 +5,14 @@ import { useContextAPI } from '../ContextAPI';
 
 const SideBar = () => {
 
-  const { bookmarks } = useContextAPI();
+  const { bookmarks, selectedTags, handleChechboxChange } = useContextAPI();
+
+  const tagCounts = bookmarks.reduce((acc, bookmark) => {
+    bookmark.tags.forEach(tag => {
+      acc[tag] = (acc[tag] || 0) + 1;
+    });
+    return acc;
+  }, {});
 
   return (
     <div className='sidebar'>
@@ -15,157 +22,32 @@ const SideBar = () => {
           <h1>Bookmark Manager</h1>
         </div>
         <div className="home-archive">
-          <div className='home'><Icon icon='mdi:home' className='home-icon' />Home</div>
-          <div className='archive'><Icon icon='mdi:archive' className='archive-icon' />Archive</div>
+          <div className='home'>
+            <span className='home-icon'><Icon icon='mdi:home' className='home-icon' />Home</span>
+            <span className='count'>{bookmarks.length}</span></div>
+          <div className='archive'>
+            <span className='archive-icon'><Icon icon='mdi:archive' className='archive-icon' />Archive</span>
+            <span className='count'>0</span>
+          </div>
         </div>
 
         <div className="tags-category">
           <h2>TAGS</h2>
           <div className="tags-list">
-            <div className="individual-tags">
-              <span className='tag-name'>
-                <input type="checkbox" />
-                <p>AI</p>
-              </span>
-              <span className='tags-count'>
-                {bookmarks.filter((bookmark) => bookmark.tags.includes('AI')).length}
-              </span>
-            </div>
-            <div className="individual-tags">
-              <span className='tag-name'>
-                <input type="checkbox" />
-                <p>Community</p>
-              </span>
-              <span className='tags-count'>
-                {bookmarks.filter((bookmark) => bookmark.tags.includes('Community')).length}
-              </span>
-            </div>
-            <div className="individual-tags">
-              <span className='tag-name'>
-                <input type="checkbox" />
-                <p>Compatibility</p>
-              </span>
-              <span className='tags-count'>
-                {bookmarks.filter((bookmark) => bookmark.tags.includes("Compatibility")).length}
-              </span>
-            </div>
-            <div className="individual-tags">
-              <span className='tag-name'>
-                <input type="checkbox" />
-                <p>CSS</p>
-              </span>
-              <span className='tags-count'>
-                {bookmarks.filter((bookmark) => bookmark.tags.includes("CSS")).length}
-              </span>
-            </div>
-            <div className="individual-tags">
-              <span className='tag-name'>
-                <input type="checkbox" />
-                <p>Design</p>
-              </span>
-              <span className='tags-count'>
-                {bookmarks.filter((bookmark) => bookmark.tags.includes("Design")).length}
-              </span>
-            </div>
-            <div className="individual-tags">
-              <span className='tag-name'>
-                <input type="checkbox" />
-                <p>Framework</p>
-              </span>
-              <span className='tags-count'>
-                {bookmarks.filter((bookmark) => bookmark.tags.includes("Framework")).length}
-              </span>
-            </div>
-            <div className="individual-tags">
-              <span className='tag-name'>
-                <input type="checkbox" />
-                <p>Git</p>
-              </span>
-              <span className='tags-count'>
-                {bookmarks.filter((bookmark) => bookmark.tags.includes("Git")).length}
-              </span>
-            </div>
-            <div className="individual-tags">
-              <span className='tag-name'>
-                <input type="checkbox" />
-                <p>JavaScript</p>
-              </span>
-              <span className='tags-count'>
-                {bookmarks.filter((bookmark) => bookmark.tags.includes("JavaScript")).length}
-              </span>
-            </div>
-            <div className="individual-tags">
-              <span className='tag-name'>
-                <input type="checkbox" />
-                <p>Layout</p>
-              </span>
-              <span className='tags-count'>
-                {bookmarks.filter((bookmark) => bookmark.tags.includes("Layout")).length}
-              </span>
-            </div>
-            <div className="individual-tags">
-              <span className='tag-name'>
-                <input type="checkbox" />
-                <p>Learning</p>
-              </span>
-              <span className='tags-count'>
-                {bookmarks.filter((bookmark) => bookmark.tags.includes("Learning")).length}
-              </span>
-            </div>
-            <div className="individual-tags">
-              <span className='tag-name'>
-                <input type="checkbox" />
-                <p>Performance</p>
-              </span>
-              <span className='tags-count'>
-                {bookmarks.filter((bookmark) => bookmark.tags.includes("Performance")).length}
-              </span>
-            </div>
-            <div className="individual-tags">
-              <span className='tag-name'>
-                <input type="checkbox" />
-                <p>Practice</p>
-              </span>
-              <span className='tags-count'>
-                {bookmarks.filter((bookmark) => bookmark.tags.includes("Practice")).length}
-              </span>
-            </div>
-            <div className="individual-tags">
-              <span className='tag-name'>
-                <input type="checkbox" />
-                <p>Preference</p>
-              </span>
-              <span className='tags-count'>
-                {bookmarks.filter((bookmark) => bookmark.tags.includes("Preference")).length}
-              </span>
-            </div>
-            <div className="individual-tags">
-              <span className='tag-name'>
-                <input type="checkbox" />
-                <p>Tips</p>
-              </span>
-              <span className='tags-count'>
-                {bookmarks.filter((bookmark) => bookmark.tags.includes("Tips")).length}
-              </span>
-            </div>
-            <div className="individual-tags">
-              <span className='tag-name'>
-                <input type="checkbox" />
-                <p>Tools</p>
-              </span>
-              <span className='tags-count'>
-                {bookmarks.filter((bookmark) => bookmark.tags.includes("Tools")).length}
-              </span>
-            </div>
-            <div className="individual-tags">
-              <span className='tag-name'>
-                <input type="checkbox" />
-                <p>Tutorial</p>
-              </span>
-              <span className='tags-count'>
-                {bookmarks.filter((bookmark) => bookmark.tags.includes("Tutorial")).length}
-              </span>
-            </div>
+            {Object.entries(tagCounts).map(([tag, count]) => (
+              <div className="individual-tags" key={crypto.randomUUID()}>
+                <span className='tag-name'>
+                  <input
+                    type="checkbox"
+                    value={tag}
+                    checked={selectedTags.includes(tag)}
+                    onChange={handleChechboxChange}
+                  />
+                  <p>{tag}</p>
+                </span>
+                <span className='tags-count'>{count}</span>
+              </div>
+            ))}
           </div>
         </div>
       </div>
