@@ -58,7 +58,6 @@ export const ContextProvider = ({ children }) => {
 
   const filteredBookmarks = getSelectedBookmarks();
 
-
   // visit count
   const trackVisitCount = (bookmarkId) => {
     setBookmarks(prevBookmarks =>
@@ -70,6 +69,25 @@ export const ContextProvider = ({ children }) => {
     );
   }
 
+  // pinned bookmark 
+  const pinnedBookmark = (bookmarkId) => {
+    setBookmarks(prevBookmarks => {
+      // update pinned status
+      return prevBookmarks.map(bookmark =>
+        bookmark.id === bookmarkId
+          ? { ...bookmark, pinned: !bookmark.pinned }
+          : bookmark
+      ).sort((a, b) => {
+        // pinned items first
+        if (a.pinned !== b.pinned) {
+          return a.pinned ? -1 : 1;
+        }
+        // sort by id for unpinned
+        return a.id - b.id
+      })
+    })
+
+  }
   const value = {
     query,
     bookmarks,
@@ -82,7 +100,8 @@ export const ContextProvider = ({ children }) => {
     addBookmark,
     setSelectedTags,
     handleChechboxChange,
-    trackVisitCount
+    trackVisitCount,
+    pinnedBookmark
   };
 
   return <ContextAPI.Provider value={value}>

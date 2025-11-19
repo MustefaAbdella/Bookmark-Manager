@@ -4,10 +4,8 @@ import { Icon } from '@iconify/react'
 import { useContextAPI } from '../ContextAPI'
 const Cards = ({ ...bookmark }) => {
 
-  const { trackVisitCount } = useContextAPI();
-  const handleVisitCount = () => {
-    trackVisitCount(bookmark.id);
-  }
+  const { trackVisitCount, pinnedBookmark } = useContextAPI();
+
   return (
     <div className='card-container'>
       <div className="card-detail">
@@ -16,7 +14,7 @@ const Cards = ({ ...bookmark }) => {
             <div className='bookmark-icon'><img src={bookmark.favicon} alt="" /></div>
             <div className='title-and-link'>
               <h2>{bookmark.title}</h2>
-              <a onClick={handleVisitCount} href={bookmark.url} target='_blank' rel="noopener">{bookmark.url}</a>
+              <a onClick={() => trackVisitCount(bookmark.id)} href={bookmark.url} target='_blank' rel="noopener">{bookmark.url}</a>
             </div>
           </div>
           <div className='toggle-menu'>
@@ -40,7 +38,9 @@ const Cards = ({ ...bookmark }) => {
           <span className='last-watched'><Icon icon='ic:outline-watch-later' />{bookmark.createdAt}</span>
           <span className='created-date'><Icon icon='majesticons:calendar-line' />{bookmark.lastVisited}</span>
         </div>
-        <span className='pin'><Icon icon='tabler:pinned' /></span>
+        <span onClick={() => pinnedBookmark(bookmark.id)} className={bookmark.pinned ? 'unpin' : 'pin'}>
+          <Icon icon='tabler:pinned-filled' />
+        </span>
       </div>
     </div>
   )

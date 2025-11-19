@@ -123,7 +123,15 @@
 }
 
 .card-footer .pin {
-  color: #777;
+  color: #999;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.card-footer .unpin {
+  color: green;
+  font-weight: 900;
   cursor: pointer;
   display: flex;
   align-items: center;
