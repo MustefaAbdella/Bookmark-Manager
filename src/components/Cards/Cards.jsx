@@ -1,24 +1,42 @@
-import React from 'react'
+import React, { useRef, useState } from 'react'
 import './Cards.css'
 import { Icon } from '@iconify/react'
 import { useContextAPI } from '../ContextAPI'
 const Cards = ({ ...bookmark }) => {
 
   const { trackVisitCount, pinnedBookmark } = useContextAPI();
+  const [menuOpenId, setMenuOpenId] = useState(null);
+  const menuRef = useRef();
 
+  const toggleMenu = (bookmarkId, e) => {
+    e.stopPropagation();
+    setMenuOpenId(menuOpenId === bookmarkId ? null : bookmarkId);
+  }
   return (
     <div className='card-container'>
       <div className="card-detail">
         <div className="card-header">
           <div className="card-title">
-            <div className='bookmark-icon'><img src={bookmark.favicon} alt="" /></div>
+            <div className='bookmark-icon'>
+              <img src={bookmark.favicon} alt="" />
+            </div>
             <div className='title-and-link'>
               <h2>{bookmark.title}</h2>
               <a onClick={() => trackVisitCount(bookmark.id)} href={bookmark.url} target='_blank' rel="noopener">{bookmark.url}</a>
             </div>
           </div>
           <div className='toggle-menu'>
-            <Icon icon='charm:menu-kebab' />
+            <Icon icon='charm:menu-kebab'
+              onClick={(e) => toggleMenu(bookmark.id, e)} />
+            <div className="toggle" ref={menuRef}>
+              {menuOpenId === bookmark.id && (
+                <div className="toggle-list" onClick={(e) => e.stopPropagation()}>
+                  <button className='archive-btn'><Icon icon='material-symbols:archive' />Archive</button>
+                  <button className='edit-btn'><Icon icon='mdi:edit-outline' />Edit</button>
+                  <button className='delete-btn'><Icon icon='material-symbols:delete-outline' />Delete</button>
+                </div>
+              )}
+            </div>
           </div>
         </div>
         <div className="card-content">

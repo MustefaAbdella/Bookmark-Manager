@@ -86,8 +86,32 @@ export const ContextProvider = ({ children }) => {
         return a.id - b.id
       })
     })
-
   }
+
+  // archive bookmark
+  const archiveBookmark = (bookmarkId) => {
+    setBookmarks(prevBookmarks => {
+      return prevBookmarks
+        .map(bookmark =>
+          bookmark.id === bookmarkId
+            ? { ...bookmark, isArchived: true }
+            : bookmark
+        ).filter(bookmark => !bookmark.isArchived)
+    });
+  }
+
+  // unarchive bookmark
+  const unarchiveBookmark = (bookmarkId) => {
+    setBookmarks(prevBookmarks => {
+      return prevBookmarks
+        .map(bookmark =>
+          bookmark.id === bookmarkId
+            ? { ...bookmark, isArchived: false }
+            : bookmark
+        ).filter(bookmark => bookmark.isArchived)
+    });
+  }
+
   const value = {
     query,
     bookmarks,
@@ -101,7 +125,9 @@ export const ContextProvider = ({ children }) => {
     setSelectedTags,
     handleChechboxChange,
     trackVisitCount,
-    pinnedBookmark
+    pinnedBookmark,
+    archiveBookmark,
+    unarchiveBookmark
   };
 
   return <ContextAPI.Provider value={value}>

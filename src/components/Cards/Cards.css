@@ -66,9 +66,47 @@
   padding: 6px;
   border-radius: 5px;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   cursor: pointer;
+  position: relative;
+}
+
+.toggle {
+  position: absolute;
+  top: 32px;
+  right: -10px;
+}
+
+.toggle .toggle-list {
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  gap: 4px;
+  padding: 4px;
+  border-radius: 4px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.edit-btn,
+.archive-btn,
+.delete-btn {
+  border: none;
+  width: 100%;
+  display: flex;
+  gap: 10px;
+  background-color: #fff;
+  padding: 4px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.edit-btn:hover,
+.archive-btn:hover,
+.delete-btn:hover {
+  background-color: #ececec;
 }
 
 .card-content {
