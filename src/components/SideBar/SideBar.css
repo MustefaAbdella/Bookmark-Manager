@@ -64,8 +64,11 @@
 }
 
 .home-archive .home {
-  background-color: rgb(227, 235, 235);
   font-weight: 500;
+}
+
+.active-page {
+  background-color: rgb(227, 235, 235);
 }
 
 .home-archive .home .home-icon,

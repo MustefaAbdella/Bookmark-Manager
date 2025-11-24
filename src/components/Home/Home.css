@@ -1,15 +1,14 @@
-.main-content {
+/* .main-content {
   display: flex;
   flex-direction: column;
   width: 100%;
-
-}
+} */
 
 .grid-container {
   background-color: rgba(227, 235, 235);
   min-height: 100%;
   width: 100%;
-  padding: 20px 30px;
+  padding: 30px 30px;
 }
 
 .header {

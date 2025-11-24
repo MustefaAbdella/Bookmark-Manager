@@ -4,7 +4,7 @@ import { Icon } from '@iconify/react'
 import { useContextAPI } from '../ContextAPI'
 const Cards = ({ ...bookmark }) => {
 
-  const { trackVisitCount, pinnedBookmark } = useContextAPI();
+  const { trackVisitCount, pinnedBookmark, archiveBookmark, unarchiveBookmark } = useContextAPI();
   const [menuOpenId, setMenuOpenId] = useState(null);
   const menuRef = useRef();
 
@@ -31,7 +31,16 @@ const Cards = ({ ...bookmark }) => {
             <div className="toggle" ref={menuRef}>
               {menuOpenId === bookmark.id && (
                 <div className="toggle-list" onClick={(e) => e.stopPropagation()}>
-                  <button className='archive-btn'><Icon icon='material-symbols:archive' />Archive</button>
+                  {bookmark.isArchived ? (
+                    <button onClick={() => unarchiveBookmark(bookmark.id)} className='archive-btn'>
+                      <Icon icon='material-symbols:unarchive' />
+                      Unarchive
+                    </button>
+                  ) : <button onClick={() => archiveBookmark(bookmark.id)} className='archive-btn'>
+                    <Icon icon='material-symbols:archive' />
+                    Archive
+                  </button>}
+
                   <button className='edit-btn'><Icon icon='mdi:edit-outline' />Edit</button>
                   <button className='delete-btn'><Icon icon='material-symbols:delete-outline' />Delete</button>
                 </div>

@@ -51,7 +51,7 @@ export const ContextProvider = ({ children }) => {
     // search using title of the bookmark
     if (query) {
       result = result
-        .filter((bookmark) => bookmark.title.toLowerCase().includes(query));
+        .filter((bookmark) => bookmark.title.toLowerCase().includes(query.toLowerCase()));
     };
     return result;
   }
@@ -83,34 +83,35 @@ export const ContextProvider = ({ children }) => {
           return a.pinned ? -1 : 1;
         }
         // sort by id for unpinned
-        return a.id - b.id
+        return a.id.localeCompare(b.id)
       })
     })
   }
 
   // archive bookmark
   const archiveBookmark = (bookmarkId) => {
-    setBookmarks(prevBookmarks => {
-      return prevBookmarks
+    setBookmarks(prevBookmarks =>
+      prevBookmarks
         .map(bookmark =>
           bookmark.id === bookmarkId
             ? { ...bookmark, isArchived: true }
             : bookmark
-        ).filter(bookmark => !bookmark.isArchived)
-    });
+        )
+    );
   }
 
   // unarchive bookmark
   const unarchiveBookmark = (bookmarkId) => {
-    setBookmarks(prevBookmarks => {
-      return prevBookmarks
+    setBookmarks(prevBookmarks =>
+      prevBookmarks
         .map(bookmark =>
           bookmark.id === bookmarkId
             ? { ...bookmark, isArchived: false }
             : bookmark
-        ).filter(bookmark => bookmark.isArchived)
-    });
+        )
+    );
   }
+
 
   const value = {
     query,
@@ -118,6 +119,8 @@ export const ContextProvider = ({ children }) => {
     showAddBookmark,
     selectedTags,
     filteredBookmarks,
+    // archivedBookmarks,
+    // activeBookmarks,
     setQuery,
     setBookmarks,
     setShowAddBookmark,
@@ -126,8 +129,8 @@ export const ContextProvider = ({ children }) => {
     handleChechboxChange,
     trackVisitCount,
     pinnedBookmark,
-    archiveBookmark,
-    unarchiveBookmark
+    unarchiveBookmark,
+    archiveBookmark
   };
 
   return <ContextAPI.Provider value={value}>
