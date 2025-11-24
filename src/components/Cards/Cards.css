@@ -3,7 +3,7 @@
   flex-direction: column;
   justify-content: space-between;
   gap: 15px;
-  background-color: #fff;
+  background-color: var(--color-bg);
   border-radius: 10px;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
 }
@@ -20,19 +20,20 @@
   justify-content: space-between;
   align-items: center;
   padding-bottom: 15px;
-  border-bottom: 1px solid #e2e2e2;
+  border-bottom: 1px solid var(--color-border);
 }
 
 .card-header .card-title {
   display: flex;
   align-items: center;
   gap: 10px;
+  color: var(--color-text);
 }
 
 .card-header .card-title .bookmark-icon {
-  background-color: #fff;
+  background-color: var(--color-icon-bg);
   padding: 2px;
-  border: 1px solid #e2e2e2;
+  border: 1px solid var(--color-border);
   border-radius: 5px;
   display: flex;
   align-items: center;
@@ -58,12 +59,12 @@
 
 .card-header .card-title .title-and-link a {
   text-decoration: none;
-  color: gray;
+  color: var(--color-text-light);
   font-weight: 500;
 }
 
 .card-header .toggle-menu {
-  border: 1px solid #ccc;
+  border: 1px solid var(--color-button-light);
   padding: 6px;
   border-radius: 5px;
   display: flex;
@@ -72,6 +73,7 @@
   align-items: center;
   cursor: pointer;
   position: relative;
+  color: var(--color-text-light);
 }
 
 .toggle {
@@ -81,7 +83,7 @@
 }
 
 .toggle .toggle-list {
-  background-color: #fff;
+  background-color: var(--color-text-light);
   display: flex;
   flex-direction: column;
   justify-content: start;
@@ -98,7 +100,7 @@
   width: 100%;
   display: flex;
   gap: 10px;
-  background-color: #fff;
+  background-color: var(--color-text-light);
   padding: 4px;
   cursor: pointer;
   border-radius: 4px;
@@ -107,7 +109,7 @@
 .edit-btn:hover,
 .archive-btn:hover,
 .delete-btn:hover {
-  background-color: #ececec;
+  background-color: var(--color-toggle-button);
 }
 
 .card-content {
@@ -118,7 +120,7 @@
 
 .card-content .bookmark-description {
   font-size: 14px;
-  color: #777;
+  color: var(--color-text-light);
   font-weight: 500;
 }
 
@@ -132,8 +134,8 @@
 
 .card-content .bookmark-tags .tags-list {
   font-size: 12px;
-  background-color: rgba(227, 235, 235);
-  color: #555;
+  background-color: var(--color-secondary);
+  color: var(--color-text-light);
   font-weight: 400;
   padding: 2px 7px;
   border-radius: 4px;
@@ -143,7 +145,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border-top: 1px solid #e2e2e2;
+  border-top: 1px solid var(--color-border);
   padding: 10px 15px;
 }
 
@@ -157,19 +159,19 @@
   display: flex;
   align-items: center;
   font-size: 13px;
-  color: #444;
+  color: var(--color-text-light);
   gap: 6px;
 }
 
 .card-footer .pin {
-  color: #999;
+  color: var(--color-text-light);
   cursor: pointer;
   display: flex;
   align-items: center;
 }
 
 .card-footer .unpin {
-  color: green;
+  color: var(--color-primary);
   font-weight: 900;
   cursor: pointer;
   display: flex;

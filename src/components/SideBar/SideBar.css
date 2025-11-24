@@ -1,15 +1,15 @@
 .sidebar {
   width: 280px;
   min-height: 100vh;
-  background-color: white;
-  border-right: 1px solid #e2e2e2;
+  background-color: var(--color-bg);
+  border-right: 1px solid var(--color-border);
 }
 
 .sidebar-wrapper {
   display: flex;
   flex-direction: column;
   padding: 14px 16px;
-
+  min-height: 100%;
 }
 
 .sidebar-wrapper .title {
@@ -22,15 +22,16 @@
 .sidebar-wrapper .title h1 {
   font-size: 16px;
   font-weight: 800;
+  color: var(--color-text);
 }
 
 .sidebar-wrapper .title .title-icon {
-  color: white;
+  color: var(--color-bg);
 }
 
 .sidebar-wrapper .title span {
   padding: 5px 6px;
-  background-color: rgb(2, 91, 91);
+  background-color: var(--color-primary);
   border-radius: 8px;
   display: flex;
   justify-content: center;
@@ -42,6 +43,7 @@
   display: flex;
   flex-direction: column;
   gap: 5px;
+  margin-bottom: 10px;
 }
 
 .home-archive .home,
@@ -50,7 +52,7 @@
   align-items: center;
   justify-content: space-between;
   gap: 8px;
-  color: #444;
+  color: var(--color-text-light);
   padding: 6px 8px;
   border-radius: 4px;
   cursor: pointer;
@@ -68,17 +70,17 @@
 }
 
 .active-page {
-  background-color: rgb(227, 235, 235);
+  background-color: var(--color-secondary);
 }
 
 .home-archive .home .home-icon,
 .archive-icon {
-  color: #888;
+  color: var(--tag-text);
 }
 
 .home .count,
 .archive .count {
-  background-color: rgb(227, 235, 235);
+  background-color: var(--color-secondary);
   font-size: 11px;
   width: 16px;
   height: 16px;
@@ -93,11 +95,12 @@
   flex-direction: column;
   margin-top: 8px;
   padding: 0px 8px;
+  min-height: 100%;
 }
 
 .tags-category h2 {
   font-size: 12px;
-  color: #888;
+  color: var(--tag-text);
   margin-bottom: 10px;
 }
 
@@ -123,11 +126,11 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  color: #444;
+  color: var(--color-text-light);
 }
 
 .tags-category .tags-list .individual-tags .tags-count {
-  background-color: rgb(227, 235, 235);
+  background-color: var(--color-secondary);
   font-size: 11px;
   width: 16px;
   height: 16px;

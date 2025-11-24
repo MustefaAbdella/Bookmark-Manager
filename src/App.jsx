@@ -10,9 +10,11 @@ import Archive from './components/Archive/Archive'
 
 function App() {
 
+  const { isDark } = useContextAPI();
+
   return (
 
-    <div className="app">
+    <div className='app' >
       <SideBar />
       <div className='main-content'>
         <NavBar />

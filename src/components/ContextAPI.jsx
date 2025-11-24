@@ -9,7 +9,7 @@ export const ContextProvider = ({ children }) => {
   const [bookmarks, setBookmarks] = useState(initialBookmarks);
   const [showAddBookmark, setShowAddBookmark] = useState(false)
   const [selectedTags, setSelectedTags] = useState([]);
-  // const [visitCount, setVisitCount] = useState(0);
+  const [isDark, setIsDark] = useState(JSON.parse(localStorage.getItem('isDarkMode')));
 
   const addBookmark = (newBookmark) => {
     const bookmark = {
@@ -112,6 +112,13 @@ export const ContextProvider = ({ children }) => {
     );
   }
 
+  const toggleTheme = () => {
+    setIsDark((prev) => {
+      const newValue = !prev;
+      localStorage.setItem('isDarkMode', JSON.stringify(newValue));
+      return newValue;
+    })
+  }
 
   const value = {
     query,
@@ -119,8 +126,7 @@ export const ContextProvider = ({ children }) => {
     showAddBookmark,
     selectedTags,
     filteredBookmarks,
-    // archivedBookmarks,
-    // activeBookmarks,
+    isDark,
     setQuery,
     setBookmarks,
     setShowAddBookmark,
@@ -130,11 +136,16 @@ export const ContextProvider = ({ children }) => {
     trackVisitCount,
     pinnedBookmark,
     unarchiveBookmark,
-    archiveBookmark
+    archiveBookmark,
+    setIsDark,
+    toggleTheme
   };
 
   return <ContextAPI.Provider value={value}>
-    {children}
+    <div data-theme={isDark ? "dark" : "light"}>
+      {children}
+    </div>
+
   </ContextAPI.Provider>
 
 }

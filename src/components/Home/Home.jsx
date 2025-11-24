@@ -15,7 +15,7 @@ const Home = () => {
         <div className="header-container">
           <div className="header">
             <h1>All bookmarks</h1>
-            <button><Icon icon='mdi:sort' />Sort by</button>
+            <button className='sort-btn'><Icon icon='mdi:sort' />Sort by</button>
           </div>
         </div>
         <div className="bookmark-cards">

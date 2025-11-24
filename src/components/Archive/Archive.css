@@ -1,5 +1,5 @@
 .archive-container {
-  background-color: rgba(227, 235, 235);
+  background-color: var(--color-secondary);
   min-height: 100vh;
   width: 100%;
   padding: 20px 30px;

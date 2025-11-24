@@ -1,9 +1,10 @@
 .navbar {
   height: 60px;
-  border-bottom: 1px solid #e3e3e3;
+  border-bottom: 1px solid var(--color-border);
 }
 
 .navbar-wrapper {
+  background-color: var(--color-bg);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -17,10 +18,11 @@
   padding-left: 8px;
   border-radius: 8px;
   width: 30%;
-  border: 1px solid #e3e3e3;
+  border: 1px solid var(--color-border);
 }
 
 .navbar-wrapper .navbar-search input {
+  background-color: var(--color-bg);
   padding: 8px;
   border-radius: 8px;
   border: none;
@@ -29,7 +31,7 @@
 }
 
 .navbar-wrapper .navbar-search .search-icon {
-  color: #777;
+  color: var(--color-text-light);
 }
 
 .navbar-left {
@@ -46,8 +48,8 @@
 }
 
 .navbar-left button {
-  background-color: rgb(2, 91, 91);
-  color: white;
+  background-color: var(--color-primary);
+  color: var(--color-bg);
   padding: 8px 12px;
   border: none;
   border-radius: 4px;
@@ -59,13 +61,12 @@
 }
 
 .navbar-left button:hover {
-  background-color: rgb(1, 135, 135);
+  background-color: var(--color-primary-hover);
 }
 
 .navbar-left .profile {
   height: 30px;
   width: 30px;
-  background-color: aqua;
   border-radius: 50%;
   cursor: pointer;
 }
@@ -75,4 +76,16 @@
   width: 30px;
   border-radius: 50%;
   object-fit: cover;
+}
+
+.theme {
+  height: 30px;
+  width: 30px;
+  background-color: var(--color-secondary);
+  color: rgb(243, 206, 0);
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
 }

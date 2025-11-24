@@ -4,12 +4,12 @@ import './Archive.css'
 import { useContextAPI } from '../ContextAPI'
 
 const Archive = () => {
-  const { filteredBookmarks } = useContextAPI();
+  const { filteredBookmarks, isDark } = useContextAPI();
 
   console.log(filteredBookmarks.isArchived);
 
   return (
-    <div className='archive-container'>
+    <div className='archive-container' data-theme={isDark ? "dark" : "light"}>
       <h2>All archived bookmarks</h2>
       <div className="archived-bookmark-cards">
         {filteredBookmarks

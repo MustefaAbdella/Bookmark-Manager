@@ -25,7 +25,6 @@ const SideBar = () => {
     });
     return acc;
   }, {});
-  console.log(tagCounts);
 
   return (
     <div className='sidebar'>
