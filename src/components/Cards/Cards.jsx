@@ -65,7 +65,7 @@ const Cards = ({ ...bookmark }) => {
           <span className='last-watched'><Icon icon='ic:outline-watch-later' />{bookmark.createdAt}</span>
           <span className='created-date'><Icon icon='majesticons:calendar-line' />{bookmark.lastVisited}</span>
         </div>
-        <span onClick={() => pinnedBookmark(bookmark.id)} className={bookmark.pinned ? 'unpin' : 'pin'}>
+        <span onClick={() => pinnedBookmark(bookmark.id)} className={bookmark.pinned ? 'pin' : 'unpin'}>
           <Icon icon='tabler:pinned-filled' />
         </span>
       </div>

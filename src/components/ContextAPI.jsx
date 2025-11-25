@@ -9,6 +9,7 @@ export const ContextProvider = ({ children }) => {
   const [bookmarks, setBookmarks] = useState(initialBookmarks);
   const [showAddBookmark, setShowAddBookmark] = useState(false)
   const [selectedTags, setSelectedTags] = useState([]);
+  const [sortBy, setSortBy] = useState('');
   const [isDark, setIsDark] = useState(JSON.parse(localStorage.getItem('isDarkMode')));
 
   const addBookmark = (newBookmark) => {
@@ -37,6 +38,28 @@ export const ContextProvider = ({ children }) => {
     }
   };
 
+  const sortBookmarks = (bookmarksToSort) => {
+    switch (sortBy) {
+      case 'recently-added':
+        // sort by Recently added
+        return [...bookmarksToSort].sort((a, b) =>
+          new Date(b.createdAt) - new Date(a.createdAt));
+
+      // sort by Recently visited
+      case 'recently-visited':
+        return [...bookmarksToSort].sort((a, b) =>
+          new Date(b.lastVisited) - new Date(a.lastVisited));
+
+      // sort by Most visited
+      case 'most-visited':
+        return [...bookmarksToSort].sort((a, b) =>
+          (b.visitCount || 0) - (a.visitCount || 0));
+
+      default:
+        return bookmarksToSort;
+    }
+  }
+
   const getSelectedBookmarks = () => {
 
     let result = bookmarks;
@@ -53,6 +76,10 @@ export const ContextProvider = ({ children }) => {
       result = result
         .filter((bookmark) => bookmark.title.toLowerCase().includes(query.toLowerCase()));
     };
+
+    // apply sorting
+    result = sortBookmarks(result);
+
     return result;
   }
 
@@ -127,6 +154,7 @@ export const ContextProvider = ({ children }) => {
     selectedTags,
     filteredBookmarks,
     isDark,
+    sortBy,
     setQuery,
     setBookmarks,
     setShowAddBookmark,
@@ -138,6 +166,7 @@ export const ContextProvider = ({ children }) => {
     unarchiveBookmark,
     archiveBookmark,
     setIsDark,
+    setSortBy,
     toggleTheme
   };
 

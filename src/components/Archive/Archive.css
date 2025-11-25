@@ -2,11 +2,32 @@
   background-color: var(--color-secondary);
   min-height: 100vh;
   width: 100%;
-  padding: 20px 30px;
+  padding: 30px 30px;
 }
 
-h2 {
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.header h2 {
   font-size: 18px;
+  color: var(--color-text);
+}
+
+.header select {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-weight: 600;
+  background-color: var(--color-icon-bg);
+  padding: 4px 6px;
+  border: 1px solid var(--color-button-light);
+  border-radius: 4px;
+  outline: none;
+  cursor: pointer;
 }
 
 .archived-bookmark-cards {

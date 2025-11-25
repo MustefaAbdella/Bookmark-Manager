@@ -1,6 +1,6 @@
 .grid-container {
   background-color: var(--color-secondary);
-  min-height: 100%;
+  min-height: 100vh;
   width: 100%;
   padding: 30px 30px;
 }
@@ -12,20 +12,21 @@
   margin-bottom: 10px;
 }
 
-.header h1 {
+.header h2 {
   font-size: 18px;
   color: var(--color-text);
 }
 
-.header .sort-btn {
+.header select {
   display: flex;
   align-items: center;
-  gap: 7px;
+  gap: 5px;
   font-weight: 600;
   background-color: var(--color-icon-bg);
-  padding: 6px 8px;
+  padding: 6px 6px;
   border: 1px solid var(--color-button-light);
   border-radius: 4px;
+  outline: none;
   cursor: pointer;
 }
 

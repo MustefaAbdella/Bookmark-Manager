@@ -9,10 +9,10 @@
   display: flex;
   flex-direction: column;
   padding: 14px 16px;
-  min-height: 100%;
+  height: 100%;
 }
 
-.sidebar-wrapper .title {
+.title {
   display: flex;
   align-items: center;
   gap: 8px;
@@ -95,7 +95,6 @@
   flex-direction: column;
   margin-top: 8px;
   padding: 0px 8px;
-  min-height: 100%;
 }
 
 .tags-category h2 {
