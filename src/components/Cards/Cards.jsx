@@ -4,7 +4,14 @@ import { Icon } from '@iconify/react'
 import { useContextAPI } from '../ContextAPI'
 const Cards = ({ ...bookmark }) => {
 
-  const { trackVisitCount, pinnedBookmark, archiveBookmark, unarchiveBookmark } = useContextAPI();
+  const {
+    trackVisitCount,
+    pinnedBookmark,
+    archiveBookmark,
+    unarchiveBookmark,
+    handleDelete,
+    handleEditBookmark } = useContextAPI();
+
   const [menuOpenId, setMenuOpenId] = useState(null);
   const menuRef = useRef();
 
@@ -41,8 +48,11 @@ const Cards = ({ ...bookmark }) => {
                     Archive
                   </button>}
 
-                  <button className='edit-btn'><Icon icon='mdi:edit-outline' />Edit</button>
-                  <button className='delete-btn'><Icon icon='material-symbols:delete-outline' />Delete</button>
+                  <button onClick={() => handleEditBookmark(bookmark.id)} className='edit-btn'><Icon icon='mdi:edit-outline' />Edit</button>
+                  <button onClick={() => handleDelete(bookmark.id)} className='delete-btn'>
+                    <Icon icon='material-symbols:delete-outline' />
+                    Delete
+                  </button>
                 </div>
               )}
             </div>

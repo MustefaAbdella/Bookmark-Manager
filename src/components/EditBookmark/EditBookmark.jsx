@@ -1,18 +1,29 @@
-import React, { useState } from 'react'
-import './AddBookmark.css'
-import { createPortal } from 'react-dom'
-import { useContextAPI } from '../ContextAPI'
+import { createPortal } from "react-dom"
+import { useContextAPI } from "../ContextAPI"
+import '../AddBookmark/AddBookmark.css'
+import { useEffect, useState } from "react";
 
-const AddBookmark = () => {
+const EditBookmark = () => {
 
-  const { addBookmark, setShowAddBookmark, showAddBookmark } = useContextAPI();
+  const { handleSaveEdit, showEditBookmark, setShowEditBookmark, editingBookmark } = useContextAPI();
 
   const [formData, setFormData] = useState({
     title: '',
     url: '',
     description: '',
-    tags: ''
-  })
+    tags: '',
+  });
+
+  useEffect(() => {
+    if (editingBookmark) {
+      setFormData({
+        title: editingBookmark.title || '',
+        url: editingBookmark.url || '',
+        description: editingBookmark.description || '',
+        tags: Array.isArray(editingBookmark.tags) ? editingBookmark.tags.join(', ') : (editingBookmark.tags || ''),
+      })
+    }
+  }, [editingBookmark])
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -33,33 +44,24 @@ const AddBookmark = () => {
       .map(tag => tag.trim())
       .filter(tag => tag.length > 0);
 
-    addBookmark({ ...formData, tags: tagsArray });
+    const editedBookmark = {
+      ...editingBookmark,
+      title: formData.title.trim(),
+      url: formData.url.trim(),
+      description: formData.description.trim(),
+      tags: tagsArray,
+    }
 
-    // reset form
-    setFormData({
-      title: '',
-      url: '',
-      description: '',
-      tags: ''
-    });
+    handleSaveEdit(editedBookmark);
+    setShowEditBookmark(false);
   }
 
-  if (!showAddBookmark) return null;
-
-  const handleCancel = () => {
-    setShowAddBookmark(false);
-    setFormData({
-      title: '',
-      url: '',
-      description: '',
-      tags: ''
-    })
-  }
+  if (!showEditBookmark || !editingBookmark) return null;
 
   return createPortal(
     <div className="modal-overlay">
       <div className='add-bookmark'>
-        <h2>Add a new bookmark</h2>
+        <h2>Edit bookmark</h2>
         <form className='bookmark-form' onSubmit={handleSubmit}>
           <input
             type="text"
@@ -90,7 +92,7 @@ const AddBookmark = () => {
           />
 
           <div className="form-controls">
-            <span onClick={handleCancel} className='cancel-btn'>Cancel</span>
+            <span onClick={() => setShowEditBookmark(false)} className='cancel-btn'>Cancel</span>
             <button type="submit" className='save-btn'>Save bookmark</button>
           </div>
 
@@ -101,4 +103,4 @@ const AddBookmark = () => {
   )
 }
 
-export default AddBookmark
+export default EditBookmark

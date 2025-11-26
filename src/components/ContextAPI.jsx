@@ -7,7 +7,9 @@ export const ContextProvider = ({ children }) => {
 
   const [query, setQuery] = useState('');
   const [bookmarks, setBookmarks] = useState(initialBookmarks);
-  const [showAddBookmark, setShowAddBookmark] = useState(false)
+  const [showAddBookmark, setShowAddBookmark] = useState(false);
+  const [showEditBookmark, setShowEditBookmark] = useState(false);
+  const [editingBookmark, setEditingBookmark] = useState(null);
   const [selectedTags, setSelectedTags] = useState([]);
   const [sortBy, setSortBy] = useState('');
   const [isDark, setIsDark] = useState(JSON.parse(localStorage.getItem('isDarkMode')));
@@ -37,6 +39,28 @@ export const ContextProvider = ({ children }) => {
       setSelectedTags(prevTags => prevTags.filter(tag => tag !== value));
     }
   };
+
+  const handleDelete = (bookmarkId) => {
+    setBookmarks(prevBookmarks =>
+      prevBookmarks.filter(bookmark => bookmark.id !== bookmarkId)
+    )
+  }
+
+  const handleEditBookmark = (bookmarkId) => {
+    const bookmarkToEdit = bookmarks.filter(bookmark => bookmark.id === bookmarkId);
+    setEditingBookmark(bookmarkToEdit);
+    setShowEditBookmark(true);
+  }
+
+  const handleSaveEdit = (editedBookmark) => {
+    setBookmarks(prevBookmarks =>
+      prevBookmarks.map(bookmark =>
+        bookmark.id === editedBookmark.id ? editedBookmark : bookmark
+      ));
+    setShowEditBookmark(false);
+    setEditingBookmark(null);
+  }
+
 
   const sortBookmarks = (bookmarksToSort) => {
     switch (sortBy) {
@@ -139,6 +163,7 @@ export const ContextProvider = ({ children }) => {
     );
   }
 
+
   const toggleTheme = () => {
     setIsDark((prev) => {
       const newValue = !prev;
@@ -151,16 +176,24 @@ export const ContextProvider = ({ children }) => {
     query,
     bookmarks,
     showAddBookmark,
+    showEditBookmark,
     selectedTags,
     filteredBookmarks,
     isDark,
     sortBy,
+    editingBookmark,
+    showEditBookmark,
     setQuery,
     setBookmarks,
     setShowAddBookmark,
+    setShowEditBookmark,
+    setEditingBookmark,
+    handleSaveEdit,
     addBookmark,
     setSelectedTags,
     handleChechboxChange,
+    handleDelete,
+    handleEditBookmark,
     trackVisitCount,
     pinnedBookmark,
     unarchiveBookmark,

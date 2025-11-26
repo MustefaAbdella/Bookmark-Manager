@@ -4,10 +4,11 @@ import './Home.css'
 import Cards from '../Cards/Cards'
 import { useContextAPI } from '../ContextAPI'
 import AddBookmark from '../AddBookmark/AddBookmark'
+import EditBookmark from '../EditBookmark/EditBookmark'
 
 const Home = () => {
 
-  const { showAddBookmark, filteredBookmarks, sortBy, setSortBy } = useContextAPI();
+  const { showAddBookmark, showEditBookmark, filteredBookmarks, sortBy, setSortBy } = useContextAPI();
 
   return (
     <>
@@ -16,7 +17,7 @@ const Home = () => {
           <div className="header">
             <h2>All bookmarks</h2>
             <select value={sortBy} onChange={(e) => setSortBy(e.target.value)} className='sort-btn'>
-              <option value=""><Icon icon='mdi:sort' />Sort by</option>
+              <option value="">Sort by</option>
               <option value="recently-added">Recently added</option>
               <option value="recently-visited">Recently visited</option>
               <option value="most-visited">Most visited</option>
@@ -32,7 +33,7 @@ const Home = () => {
             ))}
         </div>
       </div>
-      {showAddBookmark && <AddBookmark />}
+      {(showAddBookmark && <AddBookmark />) || (showEditBookmark && <EditBookmark />)}
     </>
   )
 }
