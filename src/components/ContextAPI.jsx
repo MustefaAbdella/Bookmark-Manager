@@ -47,7 +47,7 @@ export const ContextProvider = ({ children }) => {
   }
 
   const handleEditBookmark = (bookmarkId) => {
-    const bookmarkToEdit = bookmarks.filter(bookmark => bookmark.id === bookmarkId);
+    const bookmarkToEdit = bookmarks.find(bookmark => bookmark.id === bookmarkId);
     setEditingBookmark(bookmarkToEdit);
     setShowEditBookmark(true);
   }
@@ -60,7 +60,6 @@ export const ContextProvider = ({ children }) => {
     setShowEditBookmark(false);
     setEditingBookmark(null);
   }
-
 
   const sortBookmarks = (bookmarksToSort) => {
     switch (sortBy) {

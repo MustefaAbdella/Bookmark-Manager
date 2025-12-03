@@ -2,6 +2,8 @@ import React, { useRef, useState } from 'react'
 import './Cards.css'
 import { Icon } from '@iconify/react'
 import { useContextAPI } from '../ContextAPI'
+
+
 const Cards = ({ ...bookmark }) => {
 
   const {
@@ -19,6 +21,8 @@ const Cards = ({ ...bookmark }) => {
     e.stopPropagation();
     setMenuOpenId(menuOpenId === bookmarkId ? null : bookmarkId);
   }
+
+
   return (
     <div className='card-container'>
       <div className="card-detail">
